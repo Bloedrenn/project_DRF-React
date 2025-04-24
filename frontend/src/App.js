@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import Header from './Header';
+
 function App() {
     const [items, setItems] = useState([]);
 
@@ -12,14 +14,15 @@ function App() {
 
     return (
         <div>
-        <h1>Список Items</h1>
-        <ul>
-            {items.map(item => (
-            <li key={item.id}>
-                <strong>{item.name}</strong>: {item.description}
-            </li>
-            ))}
-        </ul>
+            <Header />
+            <h1>Список Items</h1>
+            <ul>
+                {items.map(item => (
+                <li key={item.id}>
+                    <strong>{item.name}</strong>: {item.description}
+                </li>
+                ))}
+            </ul>
         </div>
     );
 }
