@@ -11,6 +11,8 @@ class App extends Component {
         };
     }
 
+    tempText = "Hello World!"
+
     componentDidMount() {
         axios.get('/api/items/')
             .then(response => {
@@ -19,11 +21,14 @@ class App extends Component {
             .catch(error => console.error(error));
     }
 
+    h1Click() { console.log("Нажали на h1") }
+    h1MouseEnter() { console.log("Навели курсор на h1") }
+
     render() {
         return (
             <div>
                 <Header />
-                <h1>Список Items</h1>
+                <h1 onClick={this.h1Click} onMouseEnter={this.h1MouseEnter}>Список Items {this.tempText}</h1>
                 <ul>
                     {this.state.items.map(item => (
                         <li key={item.id}>
