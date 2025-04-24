@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Header from './Header';
+import Header from './components/Header';
 
 class App extends Component {
     constructor(props) {
