@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 import Header from './Header';
 
-function App() {
-    const [items, setItems] = useState([]);
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: []
+        };
+    }
 
-    useEffect(() => {
+    componentDidMount() {
         axios.get('/api/items/')
-        .then(response => setItems(response.data))
-        .catch(error => console.error(error));
-    }, []);
+            .then(response => {
+                this.setState({ items: response.data });
+            })
+            .catch(error => console.error(error));
+    }
 
-    return (
-        <div>
-            <Header />
-            <h1>Список Items</h1>
-            <ul>
-                {items.map(item => (
-                <li key={item.id}>
-                    <strong>{item.name}</strong>: {item.description}
-                </li>
-                ))}
-            </ul>
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <Header />
+                <h1>Список Items</h1>
+                <ul>
+                    {this.state.items.map(item => (
+                        <li key={item.id}>
+                            <strong>{item.name}</strong>: {item.description}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
 }
 
 export default App;
