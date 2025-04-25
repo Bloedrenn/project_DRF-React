@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import Header from './components/Header';
 
+import Image from './components/Image';
+import teslaImg from './img/Tesla.jpg'
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +39,9 @@ class App extends Component {
                         </li>
                     ))}
                 </ul>
+
+                <Image imageUrl={teslaImg} />
+                <img src={teslaImg} />
             </div>
         );
     }
