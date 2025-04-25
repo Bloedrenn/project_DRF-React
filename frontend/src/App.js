@@ -18,6 +18,12 @@ class App extends Component {
         this.h1Click = this.h1Click.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.tempText !== prevState.tempText) {
+            console.log("Состояние - tempText изменилось");
+        }
+    }
+
     componentDidMount() {
         axios.get('/api/items/')
             .then(response => {
