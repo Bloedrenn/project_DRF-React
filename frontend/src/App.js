@@ -10,11 +10,12 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: [],
+            tempText: 5,
         };
-    }
 
-    tempText = "Hello World!"
+        this.h1Click = this.h1Click.bind(this);
+    }
 
     componentDidMount() {
         axios.get('/api/items/')
@@ -24,14 +25,19 @@ class App extends Component {
             .catch(error => console.error(error));
     }
 
-    h1Click() { console.log("Нажали на h1") }
+    h1Click() {
+        console.log("Нажали на h1")
+        this.setState({
+            tempText: 10
+        })
+    }
     h1MouseEnter() { console.log("Навели курсор на h1") }
 
     render() {
         return (
             <div>
                 <Header title="Шапка сайта!!" />
-                <h1 onClick={this.h1Click} onMouseEnter={this.h1MouseEnter}>Список Items {this.tempText}</h1>
+                <h1 onClick={this.h1Click} onMouseEnter={this.h1MouseEnter}>Список Items {this.state.tempText}</h1>
                 <ul>
                     {this.state.items.map(item => (
                         <li key={item.id}>
