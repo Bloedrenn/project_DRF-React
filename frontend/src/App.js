@@ -12,6 +12,7 @@ class App extends Component {
         this.state = {
             items: [],
             tempText: 5,
+            userData: ""
         };
 
         this.h1Click = this.h1Click.bind(this);
@@ -38,6 +39,8 @@ class App extends Component {
             <div>
                 <Header title="Шапка сайта!!" />
                 <h1 onClick={this.h1Click} onMouseEnter={this.h1MouseEnter}>Список Items {this.state.tempText}</h1>
+                <h2>{this.state.userData}</h2>
+                <input onChange={event => this.setState({ userData: event.target.value })} />
                 <ul>
                     {this.state.items.map(item => (
                         <li key={item.id}>
