@@ -1,35 +1,39 @@
 import React from 'react';
 
+import User from './User';
+
 class Users extends React.Component {
-    users = [
-        {
-            id: 1,
-            firstname: 'Bob',
-            lastname: 'Marley',
-            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper. Praesent convallis quam in metus feugiat sodales. Suspendisse sed consectetur sapien. Cras non quam tempor, pretium ante ac.',
-            age: 40,
-            isHappy: true
-        },
-        {
-            id: 2,
-            firstname: 'John',
-            lastname: 'Doe',
-            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper. Praesent convallis quam in metus feugiat sodales. Suspendisse sed consectetur sapien. Cras non quam tempor, pretium ante ac.',
-            age: 22,
-            isHappy: false
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            users: [
+                {
+                    id: 1,
+                    firstname: 'Bob',
+                    lastname: 'Marley',
+                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper. Praesent convallis quam in metus feugiat sodales. Suspendisse sed consectetur sapien. Cras non quam tempor, pretium ante ac.',
+                    age: 40,
+                    isHappy: true
+                },
+                {
+                    id: 2,
+                    firstname: 'John',
+                    lastname: 'Doe',
+                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper. Praesent convallis quam in metus feugiat sodales. Suspendisse sed consectetur sapien. Cras non quam tempor, pretium ante ac.',
+                    age: 22,
+                    isHappy: false
+                }
+            ]
         }
-    ]
+    }
 
     render() {
-        if (this.users.length > 0) {
+        if (this.state.users.length > 0) {
             return (
                 <div>
-                    {this.users.map((user) => (
-                        <div className="user" key={user.id}>
-                            <h3>{user.firstname} {user.lastname}</h3>
-                            <p>{user.bio}</p>
-                            <b>{user.isHappy ? 'Счастлив :)' : 'Не особо :('}</b>
-                        </div>
+                    {this.state.users.map((user) => (
+                        <User key={user.id} user={user} />
                     ))}
                 </div>
             )
