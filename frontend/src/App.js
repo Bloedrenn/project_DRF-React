@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Header from './components/Header';
 import Users from './components/Users';
+import AddUser from './components/AddUser';
 
 import Image from './components/Image';
 import teslaImg from './img/Tesla.jpg'
@@ -63,7 +64,7 @@ class App extends Component {
                     <Users />
                 </main>
                 <aside>
-                    
+                    <AddUser />
                 </aside>
             </div>
         );
