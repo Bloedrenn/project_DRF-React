@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Header from './components/Header';
+import Users from './components/Users';
 
 import Image from './components/Image';
 import teslaImg from './img/Tesla.jpg'
@@ -57,6 +58,13 @@ class App extends Component {
 
                 <Image imageUrl={teslaImg} />
                 <img src={teslaImg} />
+
+                <main>
+                    <Users />
+                </main>
+                <aside>
+                    
+                </aside>
             </div>
         );
     }
