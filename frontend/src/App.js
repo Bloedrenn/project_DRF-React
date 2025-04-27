@@ -64,7 +64,7 @@ class App extends Component {
     addUser(user) {
         const id = this.state.users.length + 1;
 
-        this.setState({users: [...this.state.users, {id, ...user}]});
+        this.setState({users: [...this.state.users, {id: id, ...user}]});
     }
 
     render() {
