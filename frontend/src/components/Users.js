@@ -12,7 +12,7 @@ class Users extends React.Component {
                     id: 1,
                     firstname: 'Bob',
                     lastname: 'Marley',
-                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper. Praesent convallis quam in metus feugiat sodales. Suspendisse sed consectetur sapien. Cras non quam tempor, pretium ante ac.',
+                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                     age: 40,
                     isHappy: true
                 },
@@ -20,7 +20,7 @@ class Users extends React.Component {
                     id: 2,
                     firstname: 'John',
                     lastname: 'Doe',
-                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper. Praesent convallis quam in metus feugiat sodales. Suspendisse sed consectetur sapien. Cras non quam tempor, pretium ante ac.',
+                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper.',
                     age: 22,
                     isHappy: false
                 }
