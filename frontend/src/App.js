@@ -14,10 +14,29 @@ class App extends Component {
         this.state = {
             items: [],
             tempText: 5,
-            userData: ""
+            userData: "",
+            users: [
+                {
+                    id: 1,
+                    firstname: 'Bob',
+                    lastname: 'Marley',
+                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    age: 40,
+                    isHappy: true
+                },
+                {
+                    id: 2,
+                    firstname: 'John',
+                    lastname: 'Doe',
+                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper.',
+                    age: 22,
+                    isHappy: false
+                }
+            ]
         };
 
         this.h1Click = this.h1Click.bind(this);
+        this.addUser = this.addUser.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -42,6 +61,12 @@ class App extends Component {
     }
     h1MouseEnter() { console.log("Навели курсор на h1") }
 
+    addUser(user) {
+        const id = this.state.users.length + 1;
+
+        this.setState({users: [...this.state.users, {id, ...user}]});
+    }
+
     render() {
         return (
             <div>
@@ -61,10 +86,10 @@ class App extends Component {
                 <img src={teslaImg} />
 
                 <main>
-                    <Users />
+                    <Users users={this.state.users} />
                 </main>
                 <aside>
-                    <AddUser />
+                    <AddUser onAdd={this.addUser} />
                 </aside>
             </div>
         );
