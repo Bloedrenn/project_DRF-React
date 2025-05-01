@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Button = ({ text="Кнопка" }) => {
+function Button({ text="Кнопка" }) {
     const [click, setClick] = useState(0)
 
     useEffect(() => {
