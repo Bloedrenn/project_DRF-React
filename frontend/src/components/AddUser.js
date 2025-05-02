@@ -11,11 +11,13 @@ class AddUser extends React.Component {
             age: 1,
             isHappy: false
         }
+
+        this.myForm = React.createRef();
     }
 
     render() {
         return (
-            <form>
+            <form ref={this.myForm}>
                 <input placeholder='Имя' onChange={(e) => this.setState({ firstname: e.target.value })} />
                 <input placeholder='Фамилия' onChange={(e) => this.setState({ lastname: e.target.value })} />
                 <textarea placeholder='Биография' onChange={(e) => this.setState({ bio: e.target.value })}></textarea>
@@ -24,15 +26,27 @@ class AddUser extends React.Component {
                 <label htmlFor='isHappy'>Счатлив?</label>
                 <input type='checkbox' id='isHappy' onChange={(e) => this.setState({ isHappy: e.target.checked })} />
 
-                <button type='button' onClick={() => this.props.onAdd(
-                    {
-                        firstname: this.state.firstname,
-                        lastname: this.state.lastname,
-                        bio: this.state.bio,
-                        age: this.state.age,
-                        isHappy: this.state.isHappy
-                    }
-                )}>
+                <button type='button' onClick={() => {
+                    this.myForm.current.reset()
+
+                    this.props.onAdd(
+                        {
+                            firstname: this.state.firstname,
+                            lastname: this.state.lastname,
+                            bio: this.state.bio,
+                            age: this.state.age,
+                            isHappy: this.state.isHappy
+                        }
+                    )
+
+                    this.setState({
+                        firstname: "",
+                        lastname: "",
+                        bio: "",
+                        age: 1,
+                        isHappy: false
+                    })
+                }}>
                     Добавить
                 </button>
             </form>
