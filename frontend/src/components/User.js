@@ -2,7 +2,7 @@ import React from 'react';
 import { IoCloseCircleSharp } from 'react-icons/io5';
 import { FaEdit } from "react-icons/fa";
 
-import AddUser from "./AddUser";
+import EditUser from "./EditUser";
 
 class User extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class User extends React.Component {
                 <p>{this.user.bio}</p>
                 <b>{this.user.isHappy ? 'Счастлив :)' : 'Не особо :('}</b>
 
-                {this.state.editForm && <AddUser />}
+                {this.state.editForm && <EditUser onEdit={this.props.onEdit} user={this.user} />}
             </div>
         )
     }
