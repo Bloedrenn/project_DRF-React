@@ -37,6 +37,7 @@ class App extends Component {
 
         this.h1Click = this.h1Click.bind(this);
         this.addUser = this.addUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -67,6 +68,12 @@ class App extends Component {
         this.setState({users: [...this.state.users, {id: id, ...user}]});
     }
 
+    deleteUser(id) {
+        this.setState({
+            users: this.state.users.filter((user) => user.id !== id)
+        })
+    }
+
     render() {
         return (
             <div>
@@ -86,7 +93,7 @@ class App extends Component {
                 <img src={teslaImg} />
 
                 <main>
-                    <Users users={this.state.users} />
+                    <Users users={this.state.users} onDelete={this.deleteUser} />
                 </main>
                 <aside>
                     <AddUser onAdd={this.addUser} />
