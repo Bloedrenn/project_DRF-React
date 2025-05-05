@@ -19,7 +19,13 @@ class AddItem extends React.Component {
             <form ref={this.myForm}>
                 <input placeholder='Название' onChange={(e) => this.setState({ name: e.target.value })} />
                 <textarea placeholder='Описание' onChange={(e) => this.setState({ description: e.target.value })}></textarea>
-                <input placeholder='Цена' onChange={(e) => this.setState({ price: e.target.value })} />
+
+                <label htmlFor='price'>Цена</label>
+                <input 
+                    type="number"
+                    id='price'
+                    onChange={(e) => this.setState({ price: Number(e.target.value) })}
+                />
 
                 <label htmlFor='isAvailable'>В наличии:</label>
                 <input type='checkbox' id='isAvailable' onChange={(e) => this.setState({ isAvailable: e.target.checked })} />
