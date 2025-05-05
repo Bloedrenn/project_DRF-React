@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Header from './components/Header';
 import Users from './components/Users';
 import AddUser from './components/AddUser';
-
-import Image from './components/Image';
-import teslaImg from './img/Tesla.jpg'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             items: [],
-            tempText: 5,
-            userData: "",
             users: [
                 {
                     id: 1,
@@ -35,16 +29,9 @@ class App extends Component {
             ]
         };
 
-        this.h1Click = this.h1Click.bind(this);
         this.addUser = this.addUser.bind(this);
-        this.deleteUser = this.deleteUser.bind(this);
         this.editUser = this.editUser.bind(this);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.tempText !== prevState.tempText) {
-            console.log("Состояние - tempText изменилось");
-        }
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentDidMount() {
@@ -54,14 +41,6 @@ class App extends Component {
             })
             .catch(error => console.error(error));
     }
-
-    h1Click() {
-        console.log("Нажали на h1")
-        this.setState({
-            tempText: 10
-        })
-    }
-    h1MouseEnter() { console.log("Навели курсор на h1") }
 
     addUser(user) {
         const id = this.state.users.length + 1;
@@ -88,10 +67,6 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Header title="Шапка сайта!!" />
-                <h1 onClick={this.h1Click} onMouseEnter={this.h1MouseEnter}>Список Items {this.state.tempText}</h1>
-                <h2>{this.state.userData}</h2>
-                <input onChange={event => this.setState({ userData: event.target.value })} />
                 <ul>
                     {this.state.items.map(item => (
                         <li key={item.id}>
@@ -99,9 +74,6 @@ class App extends Component {
                         </li>
                     ))}
                 </ul>
-
-                <Image imageUrl={teslaImg} />
-                <img src={teslaImg} />
 
                 <main>
                     <Users users={this.state.users} onEdit={this.editUser} onDelete={this.deleteUser} />
