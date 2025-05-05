@@ -16,7 +16,17 @@ class App extends Component {
     componentDidMount() {
         axios.get('/api/items/')
             .then(response => {
-                this.setState({ items: response.data });
+                const items = response.data.map(item => {
+                    // Деструктурируем item, извлекаем is_available и сохраняем остальные поля
+                    const { is_available, ...rest } = item;
+                    // Возвращаем новый объект с camelCase-полем isAvailable
+                    return {
+                        ...rest,
+                        isAvailable: is_available
+                    };
+                });
+            
+                this.setState({ items });
             })
             .catch(error => console.error(error));
     }

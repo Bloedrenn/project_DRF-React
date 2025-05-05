@@ -8,7 +8,7 @@ class EditItem extends React.Component {
             name: this.props.item.name,
             description: this.props.item.description,
             price: this.props.item.price,
-            is_available: this.props.item.is_available
+            isAvailable: this.props.item.isAvailable
         }
     }
 
@@ -27,7 +27,7 @@ class EditItem extends React.Component {
                 />
 
                 <label htmlFor='isAvailable'>В наличии:</label>
-                <input type='checkbox' id='isAvailable' checked={this.state.is_available} onChange={(e) => this.setState({ is_available: e.target.checked })} />
+                <input type='checkbox' id='isAvailable' checked={this.state.isAvailable} onChange={(e) => this.setState({ isAvailable: e.target.checked })} />
 
                 <button type='button' onClick={() => {
                     this.props.onEdit(
@@ -36,7 +36,7 @@ class EditItem extends React.Component {
                             name: this.state.name,
                             description: this.state.description,
                             price: this.state.price,
-                            is_available: this.state.is_available
+                            isAvailable: this.state.isAvailable
                         }
                     )
                 }}>

@@ -8,7 +8,7 @@ class AddItem extends React.Component {
             name: "",
             description: "",
             price: 0.0,
-            is_available: false
+            isAvailable: false
         }
 
         this.myForm = React.createRef();
@@ -22,7 +22,7 @@ class AddItem extends React.Component {
                 <input placeholder='Цена' onChange={(e) => this.setState({ price: e.target.value })} />
 
                 <label htmlFor='isAvailable'>В наличии:</label>
-                <input type='checkbox' id='isAvailable' onChange={(e) => this.setState({ is_available: e.target.checked })} />
+                <input type='checkbox' id='isAvailable' onChange={(e) => this.setState({ isAvailable: e.target.checked })} />
 
                 <button type='button' onClick={() => {
                     this.myForm.current.reset()
@@ -32,7 +32,7 @@ class AddItem extends React.Component {
                             name: this.state.name,
                             description: this.state.description,
                             price: this.state.price,
-                            is_available: this.state.is_available
+                            isAvailable: this.state.isAvailable
                         }
                     )
 
@@ -40,7 +40,7 @@ class AddItem extends React.Component {
                         name: "",
                         description: "",
                         price: 0.0,
-                        is_available: false
+                        isAvailable: false
                     })
                 }}>
                     Добавить

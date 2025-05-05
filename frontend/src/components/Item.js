@@ -21,7 +21,7 @@ class Item extends React.Component {
                 <h3>{this.props.item.name}</h3>
                 <p>{this.props.item.description}</p>
                 <p>{this.props.item.price}$</p>
-                <b>{this.props.item.is_available ? 'Есть в наличии' : 'Нет в наличии'}</b>
+                <b>{this.props.item.isAvailable ? 'Есть в наличии' : 'Нет в наличии'}</b>
 
                 {this.state.editForm && <EditItem onEdit={this.props.onEdit} item={this.props.item} />}
             </div>
