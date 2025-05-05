@@ -31,15 +31,11 @@ class App extends Component {
 
     editItem = (item) => {
         // 
-        let allItems = this.state.items
-
-        allItems[item.id - 1] = item
-
-        this.setState({items: []}, () => {
-            this.setState({ items: [...allItems] })
-        })
+        this.setState(prevState => ({
+            items: prevState.items.map(prevItem => prevItem.id === item.id ? item : prevItem)
+        }));
         // 
-    }
+    };
 
     deleteItem = (id) => {
         // 
