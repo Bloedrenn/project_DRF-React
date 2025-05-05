@@ -26,10 +26,10 @@ class EditItem extends React.Component {
                     this.props.onEdit(
                         {
                             id: this.props.item.id,
-                            name: this.item.name,
-                            description: this.item.description,
-                            price: this.item.price,
-                            is_available: this.item.is_available
+                            name: this.state.name,
+                            description: this.state.description,
+                            price: this.state.price,
+                            is_available: this.state.is_available
                         }
                     )
                 }}>
