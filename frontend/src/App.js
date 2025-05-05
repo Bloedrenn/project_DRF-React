@@ -1,85 +1,64 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Users from './components/Users';
-import AddUser from './components/AddUser';
+import Items from './components/Items';
+import AddItem from './components/AddItem';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            items: [],
-            users: [
-                {
-                    id: 1,
-                    firstname: 'Bob',
-                    lastname: 'Marley',
-                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                    age: 40,
-                    isHappy: true
-                },
-                {
-                    id: 2,
-                    firstname: 'John',
-                    lastname: 'Doe',
-                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum lobortis ullamcorper.',
-                    age: 22,
-                    isHappy: false
-                }
-            ]
-        };
 
-        this.addUser = this.addUser.bind(this);
-        this.editUser = this.editUser.bind(this);
-        this.deleteUser = this.deleteUser.bind(this);
+        this.state = {
+            items: []
+        };
     }
 
     componentDidMount() {
         axios.get('/api/items/')
             .then(response => {
                 this.setState({ items: response.data });
+
+                // console.log(this.state.items);
             })
             .catch(error => console.error(error));
     }
 
-    addUser(user) {
-        const id = this.state.users.length + 1;
+    addItem = (item) => {
+        // 
+        const id = this.state.items.length + 1;
 
-        this.setState({users: [...this.state.users, {id: id, ...user}]});
+        this.setState({items: [...this.state.items, {id: id, ...item}]});
+        // 
     }
 
-    editUser(user) {
-        let allUsers = this.state.users
+    editItem = (item) => {
+        // 
+        let allItems = this.state.items
 
-        allUsers[user.id - 1] = user
+        allItems[item.id - 1] = item
 
-        this.setState({users: []}, () => {
-            this.setState({ users: [...allUsers] })
+        this.setState({items: []}, () => {
+            this.setState({ items: [...allItems] })
         })
+        // 
     }
 
-    deleteUser(id) {
+    deleteItem = (id) => {
+        // 
         this.setState({
-            users: this.state.users.filter((user) => user.id !== id)
+            items: this.state.items.filter((item) => item.id !== id)
         })
+        // 
     }
 
     render() {
         return (
             <div>
-                <ul>
-                    {this.state.items.map(item => (
-                        <li key={item.id}>
-                            <strong>{item.name}</strong>: {item.description}
-                        </li>
-                    ))}
-                </ul>
-
                 <main>
-                    <Users users={this.state.users} onEdit={this.editUser} onDelete={this.deleteUser} />
+                    <Items items={this.state.items} onEdit={this.editItem} onDelete={this.deleteItem} />
                 </main>
                 <aside>
-                    <AddUser onAdd={this.addUser} />
+                    <AddItem onAdd={this.addItem} />
                 </aside>
             </div>
         );
