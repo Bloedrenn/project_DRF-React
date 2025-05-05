@@ -17,7 +17,14 @@ class EditItem extends React.Component {
             <form>
                 <input placeholder='Название' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
                 <textarea placeholder='Описание' value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
-                <input placeholder='Цена' value={this.state.price} onChange={(e) => this.setState({ price: e.target.value })} />
+                
+                <label htmlFor='price'>Цена</label>
+                <input 
+                    type="number"
+                    id='price'
+                    value={this.state.price}
+                    onChange={(e) => this.setState({ price: Number(e.target.value) })}
+                />
 
                 <label htmlFor='isAvailable'>В наличии:</label>
                 <input type='checkbox' id='isAvailable' checked={this.state.is_available} onChange={(e) => this.setState({ is_available: e.target.checked })} />
