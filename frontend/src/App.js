@@ -32,12 +32,33 @@ class App extends Component {
     }
 
     addItem = (item) => {
-        // 
-        const id = this.state.items.length + 1;
+        // Конвертируем camelCase -> snake_case для бэкенда
+        const backendItem = {
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            is_available: item.isAvailable
+        };
 
-        this.setState({items: [...this.state.items, {id: id, ...item}]});
-        // 
-    }
+        axios.post('/api/items/', backendItem)
+            .then(response => {
+                // Получаем созданный объект с бэкенда (включая реальный ID)
+                // Удаляем is_available из ответа и добавляем isAvailable
+                const { is_available, ...restData } = response.data;
+                const newItem = {
+                    ...restData,
+                    isAvailable: is_available
+                };
+
+                this.setState(prevState => ({
+                    items: [...prevState.items, newItem]
+                }));
+            })
+            .catch(error => {
+                console.error('Ошибка добавления:', error);
+                alert('Не удалось добавить товар');
+            });
+    };
 
     editItem = (item) => {
         // 

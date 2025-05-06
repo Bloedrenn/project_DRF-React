@@ -5,9 +5,9 @@ class AddItem extends React.Component {
         super(props)
 
         this.state = {
-            name: "",
-            description: "",
-            price: 0.0,
+            name: null,
+            description: null,
+            price: null,
             isAvailable: false
         }
 
@@ -17,14 +17,27 @@ class AddItem extends React.Component {
     render() {
         return (
             <form ref={this.myForm}>
-                <input placeholder='Название' onChange={(e) => this.setState({ name: e.target.value })} />
-                <textarea placeholder='Описание' onChange={(e) => this.setState({ description: e.target.value })}></textarea>
+                <input
+                    placeholder='Название'
+                    onChange={(e) => this.setState({ 
+                        name: e.target.value === "" ? null : e.target.value
+                    })}
+                />
+                <textarea
+                    placeholder='Описание'
+                    onChange={(e) => this.setState({ 
+                        description: e.target.value === "" ? null : e.target.value
+                    })}
+                >
+                </textarea>
 
                 <label htmlFor='price'>Цена</label>
                 <input 
                     type="number"
                     id='price'
-                    onChange={(e) => this.setState({ price: Number(e.target.value) })}
+                    onChange={(e) => this.setState({ 
+                        price: e.target.value === "" ? null : Number(e.target.value) 
+                    })}
                 />
 
                 <label htmlFor='isAvailable'>В наличии:</label>
@@ -43,9 +56,9 @@ class AddItem extends React.Component {
                     )
 
                     this.setState({
-                        name: "",
-                        description: "",
-                        price: 0.0,
+                        name: null,
+                        description: null,
+                        price: null,
                         isAvailable: false
                     })
                 }}>
