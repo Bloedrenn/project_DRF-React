@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
-class ItemDetail extends React.Component {
+class ItemDetailPage extends React.Component {
     constructor(props) {
         super(props);
         
@@ -57,7 +57,7 @@ class ItemDetail extends React.Component {
 }
 
 // Обертка для использования хука useParams
-export default function WrappedItemDetail() {
+export default function WrappedItemDetailPage() {
     const { id } = useParams();
-    return <ItemDetail id={id} />;
+    return <ItemDetailPage id={id} />;
 }
