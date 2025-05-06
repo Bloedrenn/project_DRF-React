@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Items from './components/Items';
-import AddItem from './components/AddItem';
+import HomePage from './pages/HomePage';
 import ItemDetailPage from './pages/ItemDetailPage';
 
 class App extends Component {
@@ -109,18 +108,12 @@ class App extends Component {
             <Router>
                 <Routes>
                     <Route path="/" element={
-                        <>
-                            <main>
-                                <Items 
-                                    items={this.state.items} 
-                                    onEdit={this.editItem} 
-                                    onDelete={this.deleteItem} 
-                                />
-                            </main>
-                            <aside>
-                                <AddItem onAdd={this.addItem} />
-                            </aside>
-                        </>
+                        <HomePage 
+                            items={this.state.items} 
+                            onAdd={this.addItem}
+                            onEdit={this.editItem}
+                            onDelete={this.deleteItem}
+                        />
                     }/>
                     <Route path="/items/:id" element={<ItemDetailPage />} />
                 </Routes>
