@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Items from './components/Items';
 import AddItem from './components/AddItem';
-import ItemDetail from './components/ItemDetail';
+import ItemDetailPage from './pages/ItemDetailPage';
 
 class App extends Component {
     constructor(props) {
@@ -122,7 +122,7 @@ class App extends Component {
                             </aside>
                         </>
                     }/>
-                    <Route path="/items/:id" element={<ItemDetail />} />
+                    <Route path="/items/:id" element={<ItemDetailPage />} />
                 </Routes>
             </Router>
         );
