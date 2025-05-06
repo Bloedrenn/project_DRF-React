@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Items from './components/Items';
 import AddItem from './components/AddItem';
+import ItemDetail from './components/ItemDetail';
 
 class App extends Component {
     constructor(props) {
@@ -104,14 +106,25 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <main>
-                    <Items items={this.state.items} onEdit={this.editItem} onDelete={this.deleteItem} />
-                </main>
-                <aside>
-                    <AddItem onAdd={this.addItem} />
-                </aside>
-            </div>
+            <Router>
+                <Routes>
+                    <Route path="/" element={
+                        <>
+                            <main>
+                                <Items 
+                                    items={this.state.items} 
+                                    onEdit={this.editItem} 
+                                    onDelete={this.deleteItem} 
+                                />
+                            </main>
+                            <aside>
+                                <AddItem onAdd={this.addItem} />
+                            </aside>
+                        </>
+                    }/>
+                    <Route path="/items/:id" element={<ItemDetail />} />
+                </Routes>
+            </Router>
         );
     }
 }

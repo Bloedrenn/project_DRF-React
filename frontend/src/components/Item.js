@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IoCloseCircleSharp } from 'react-icons/io5';
 import { FaEdit } from "react-icons/fa";
 
@@ -18,7 +19,11 @@ class Item extends React.Component {
             <div className="item">
                 <IoCloseCircleSharp onClick={() => this.props.onDelete(this.props.item.id)} className='delete-icon' />
                 <FaEdit onClick={() => this.setState({editForm: !this.state.editForm}) } className='edit-icon' />
-                <h3>{this.props.item.name}</h3>
+                
+                <Link to={`/items/${this.props.item.id}`}>
+                    <h3>{this.props.item.name}</h3>
+                </Link>
+
                 <p>{this.props.item.description}</p>
                 <p>{this.props.item.price}$</p>
                 <b>{this.props.item.isAvailable ? 'Есть в наличии' : 'Нет в наличии'}</b>
