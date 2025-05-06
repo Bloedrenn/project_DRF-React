@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+
+import { fetchItem } from '../api/itemsApi';
 
 class ItemDetailPage extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class ItemDetailPage extends React.Component {
 
     componentDidMount() {
         const { id } = this.props;
-        axios.get(`/api/items/${id}/`)
+        fetchItem(id)
             .then(response => {
                 const { is_available, ...rest } = response.data;
                 this.setState({

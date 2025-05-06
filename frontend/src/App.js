@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { fetchItems, createItem, updateItem, deleteItem } from './api/itemsApi';
 
 import HomePage from './pages/HomePage';
 import ItemDetailPage from './pages/ItemDetailPage';
@@ -15,7 +16,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/items/')
+        fetchItems()
             .then(response => {
                 const items = response.data.map(item => {
                     // Деструктурируем item, извлекаем is_available и сохраняем остальные поля
@@ -41,7 +42,7 @@ class App extends Component {
             is_available: item.isAvailable
         };
 
-        axios.post('/api/items/', backendItem)
+        createItem(backendItem)
             .then(response => {
                 // Получаем созданный объект с бэкенда (включая реальный ID)
                 // Удаляем is_available из ответа и добавляем isAvailable
@@ -70,7 +71,7 @@ class App extends Component {
             is_available: item.isAvailable
         };
 
-        axios.put(`/api/items/${item.id}/`, backendItem)
+        updateItem(item.id, backendItem)
             .then(response => {
                 // Обновляем состояние только после успешного ответа от сервера
                 const { is_available, ...restData } = response.data;
@@ -92,7 +93,7 @@ class App extends Component {
     deleteItem = (id) => {
         if (window.confirm('Вы уверены, что хотите удалить этот товар?')) {
             // Отправляем DELETE-запрос на бэкенд
-            axios.delete(`/api/items/${id}/`)
+            deleteItem(id)
                 .then(() => {
                     // Успешное удаление на бэкенде -> обновляем фронт
                     this.setState({
