@@ -61,11 +61,31 @@ class App extends Component {
     };
 
     editItem = (item) => {
-        // 
-        this.setState(prevState => ({
-            items: prevState.items.map(prevItem => prevItem.id === item.id ? item : prevItem)
-        }));
-        // 
+        // Конвертируем camelCase -> snake_case для бэкенда
+        const backendItem = {
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            is_available: item.isAvailable
+        };
+
+        axios.put(`/api/items/${item.id}/`, backendItem)
+            .then(response => {
+                // Обновляем состояние только после успешного ответа от сервера
+                const { is_available, ...restData } = response.data;
+                this.setState(prevState => ({
+                    items: prevState.items.map(prevItem => 
+                        prevItem.id === item.id 
+                            ? { ...restData, isAvailable: is_available } 
+                            : prevItem
+                    )
+                }));
+            })
+            .catch(error => {
+                console.error('Ошибка обновления:', error);
+                alert('Не удалось обновить товар');
+                // Можно добавить откат состояния
+            });
     };
 
     deleteItem = (id) => {
