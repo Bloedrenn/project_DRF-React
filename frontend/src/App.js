@@ -48,15 +48,17 @@ class App extends Component {
     };
 
     deleteItem = (id) => {
-        // Отправляем DELETE-запрос на бэкенд
-        axios.delete(`/api/items/${id}/`)
-            .then(() => {
-                // Успешное удаление на бэкенде -> обновляем фронт
-                this.setState({
-                    items: this.state.items.filter((item) => item.id !== id)
-                });
-            })
-            .catch(error => console.error('Ошибка удаления:', error));
+        if (window.confirm('Вы уверены, что хотите удалить этот товар?')) {
+            // Отправляем DELETE-запрос на бэкенд
+            axios.delete(`/api/items/${id}/`)
+                .then(() => {
+                    // Успешное удаление на бэкенде -> обновляем фронт
+                    this.setState({
+                        items: this.state.items.filter((item) => item.id !== id)
+                    });
+                })
+                .catch(error => console.error('Ошибка удаления:', error));
+        }
     }
 
     render() {
