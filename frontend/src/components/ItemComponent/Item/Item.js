@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { IoCloseCircleSharp } from 'react-icons/io5';
 import { FaEdit } from "react-icons/fa";
 
-import EditItem from "./EditItem";
+import EditItem from "../Forms/EditItem";
 
 class Item extends React.Component {
     constructor(props) {
