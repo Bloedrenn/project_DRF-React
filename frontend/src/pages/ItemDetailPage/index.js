@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import { fetchItem } from '../api/itemsApi';
+import { fetchItem } from '../../api/itemsApi';
 
 class ItemDetailPage extends React.Component {
     constructor(props) {
