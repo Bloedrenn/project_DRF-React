@@ -5,6 +5,8 @@ import { FaEdit } from "react-icons/fa";
 
 import EditItem from "../Forms/EditItem";
 
+import styles from './ItemCard.module.css';
+
 class ItemCard extends React.Component {
     constructor(props) {
         super(props)
@@ -16,9 +18,9 @@ class ItemCard extends React.Component {
 
     render() {
         return (
-            <div className="item">
-                <IoCloseCircleSharp onClick={() => this.props.onDelete(this.props.item.id)} className='delete-icon' />
-                <FaEdit onClick={() => this.setState({editForm: !this.state.editForm}) } className='edit-icon' />
+            <div className={styles.item}>
+                <IoCloseCircleSharp onClick={() => this.props.onDelete(this.props.item.id)} className={styles.deleteIcon} />
+                <FaEdit onClick={() => this.setState({editForm: !this.state.editForm}) } className={styles.editIcon} />
                 
                 <Link to={`/items/${this.props.item.id}`}>
                     <h3>{this.props.item.name}</h3>

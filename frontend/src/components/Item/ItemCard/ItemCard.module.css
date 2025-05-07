@@ -1,0 +1,25 @@
+.item {
+    margin-bottom: 50px;
+    background-color: #3e8fa0;
+    padding: 20px;
+}
+
+.deleteIcon {
+    float: right;
+    color: #134b57;
+    cursor: pointer;
+    transform: scale(2);
+}
+
+.editIcon {
+    float: right;
+    margin-right: 25px;
+    color: #165664;
+    cursor: pointer;
+    transform: scale(2);
+}
+
+.deleteIcon:hover,
+.editIcon:hover {
+    opacity: 0.5;
+}
