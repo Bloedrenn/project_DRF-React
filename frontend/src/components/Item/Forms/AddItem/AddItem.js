@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './AddItem.module.css';
+
 class AddItem extends React.Component {
     constructor(props) {
         super(props)
@@ -16,7 +18,7 @@ class AddItem extends React.Component {
 
     render() {
         return (
-            <form ref={this.myForm}>
+            <form ref={this.myForm} className={styles.form}>
                 <input
                     placeholder='Название'
                     onChange={(e) => this.setState({ 

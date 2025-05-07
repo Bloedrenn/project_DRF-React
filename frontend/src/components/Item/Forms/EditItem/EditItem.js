@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './EditItem.module.css';
+
 class EditItem extends React.Component {
     constructor(props) {
         super(props)
@@ -14,7 +16,7 @@ class EditItem extends React.Component {
 
     render() {
         return (
-            <form>
+            <form className={styles.form}>
                 <input placeholder='Название' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
                 <textarea placeholder='Описание' value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
                 
