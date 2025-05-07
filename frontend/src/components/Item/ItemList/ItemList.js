@@ -16,7 +16,7 @@ class ItemList extends React.Component {
         
         else {
             return (
-                <div className="item">
+                <div>
                     <h3>Магазин пуст..</h3>
                 </div>
             )
