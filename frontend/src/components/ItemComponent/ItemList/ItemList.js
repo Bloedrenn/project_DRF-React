@@ -2,7 +2,7 @@ import React from 'react';
 
 import Item from '../Item/Item';
 
-class Items extends React.Component {
+class ItemList extends React.Component {
     render() {
         if (this.props.items.length > 0) {
             return (
@@ -24,4 +24,4 @@ class Items extends React.Component {
     }
 }
 
-export default Items;
+export default ItemList;
