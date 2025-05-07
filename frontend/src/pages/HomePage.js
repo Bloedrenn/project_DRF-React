@@ -1,4 +1,4 @@
-import Items from '../components/ItemComponent/ItemList/Items';
+import Items from '../components/ItemComponent/Items/Items';
 import AddItem from '../components/ItemComponent/AddItemForm/AddItem';
 
 const HomePage = ({ items, onAdd, onEdit, onDelete }) => (
