@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 
 import EditItem from "../Forms/EditItem";
 
-class Item extends React.Component {
+class ItemCard extends React.Component {
     constructor(props) {
         super(props)
 
@@ -34,4 +34,4 @@ class Item extends React.Component {
     }
 }
 
-export default Item;
+export default ItemCard;

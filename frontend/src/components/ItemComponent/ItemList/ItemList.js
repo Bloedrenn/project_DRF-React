@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Item from '../Item';
+import ItemCard from '../ItemCard';
 
 class ItemList extends React.Component {
     render() {
@@ -8,7 +8,7 @@ class ItemList extends React.Component {
             return (
                 <div>
                     {this.props.items.map((item) => (
-                        <Item onEdit={this.props.onEdit} onDelete={this.props.onDelete} key={item.id} item={item} />
+                        <ItemCard onEdit={this.props.onEdit} onDelete={this.props.onDelete} key={item.id} item={item} />
                     ))}
                 </div>
             )
