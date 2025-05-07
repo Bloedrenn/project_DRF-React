@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 
 import { fetchItem } from '../../api/itemsApi';
 
+import styles from './ItemDetailPage.module.css';
+
 class ItemDetailPage extends React.Component {
     constructor(props) {
         super(props);
@@ -44,12 +46,12 @@ class ItemDetailPage extends React.Component {
         if (error) return <div>{error}</div>;
 
         return (
-            <div className="item-detail">
+            <div className={styles.detail}>
                 <Link to="/">← Назад к списку</Link>
-                <h1>{item.name}</h1>
+                <h1 className={styles.title}>{item.name}</h1>
                 <p>{item.description}</p>
-                <div className="price">Цена: {item.price}$</div>
-                <div className="availability">
+                <div className={styles.price}>Цена: {item.price}$</div>
+                <div className={styles.availability}>
                     {item.isAvailable ? 'Есть в наличии' : 'Нет в наличии'}
                 </div>
             </div>

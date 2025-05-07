@@ -46,26 +46,3 @@ form button:hover {
 .item form button:hover {
     transform: scale(1.01);
 }
-
-.item-detail {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-}
-
-.item-detail h1 {
-    margin-bottom: 1rem;
-}
-
-.item-detail .price {
-    font-size: 1.5rem;
-    color: green;
-    margin: 1rem 0;
-}
-
-.item-detail .availability {
-    font-weight: bold;
-    color: #666;
-}

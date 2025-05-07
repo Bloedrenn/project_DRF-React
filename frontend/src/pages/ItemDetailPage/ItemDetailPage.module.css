@@ -1,0 +1,22 @@
+.detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+
+.title {
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: green;
+    margin: 1rem 0;
+}
+
+.availability {
+    font-weight: bold;
+    color: #666;
+}
