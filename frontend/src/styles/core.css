@@ -8,19 +8,6 @@ body {
     color: #fff;
 }
 
-main {
-    margin: 50px 100px;
-    width: 50%;
-    float: left;
-}
-
-aside {
-    width: 20%;
-    margin-top: 50px;
-    margin-left: 5%;
-    float: left;
-}
-
 main .item {
     margin-bottom: 50px;
     background-color: #3e8fa0;
