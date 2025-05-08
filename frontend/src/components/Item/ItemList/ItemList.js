@@ -2,26 +2,23 @@ import React from 'react';
 
 import ItemCard from '../ItemCard';
 
-class ItemList extends React.Component {
-    render() {
-        if (this.props.items.length > 0) {
-            return (
-                <div>
-                    {this.props.items.map((item) => (
-                        <ItemCard onEdit={this.props.onEdit} onDelete={this.props.onDelete} key={item.id} item={item} />
-                    ))}
-                </div>
-            )
-        }
-        
-        else {
-            return (
-                <div>
-                    <h3>Магазин пуст..</h3>
-                </div>
-            )
-        }
-    }
-}
+const ItemList = ({ items, onEdit, onDelete }) => {
+    return items.length > 0 ? (
+        <div>
+            {items.map((item) => (
+                <ItemCard
+                    key={item.id}
+                    item={item}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                />
+            ))}
+        </div>
+    ) : (
+        <div>
+            <h3>Магазин пуст..</h3>
+        </div>
+    );
+};
 
 export default ItemList;
