@@ -1,74 +1,80 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 import styles from './AddItem.module.css';
 
-class AddItem extends React.Component {
-    constructor(props) {
-        super(props)
+const AddItem = (props) => {
+    const [formState, setFormState] = useState({
+        name: null,
+        description: null,
+        price: null,
+        isAvailable: false
+    });
+    
+    const myForm = useRef(null);
 
-        this.state = {
+    const handleInputChange = (field, value) => {
+        setFormState(prev => ({
+            ...prev,
+            [field]: value === "" ? null : value
+        }));
+    };
+
+    const handleSubmit = () => {
+        myForm.current.reset();
+        
+        props.onAdd({
+            name: formState.name,
+            description: formState.description,
+            price: formState.price,
+            isAvailable: formState.isAvailable
+        });
+
+        setFormState({
             name: null,
             description: null,
             price: null,
             isAvailable: false
-        }
+        });
+    };
 
-        this.myForm = React.createRef();
-    }
-
-    render() {
-        return (
-            <form ref={this.myForm} className={styles.form}>
-                <input
-                    placeholder='Название'
-                    onChange={(e) => this.setState({ 
-                        name: e.target.value === "" ? null : e.target.value
-                    })}
-                />
-                <textarea
-                    placeholder='Описание'
-                    onChange={(e) => this.setState({ 
-                        description: e.target.value === "" ? null : e.target.value
-                    })}
-                >
-                </textarea>
-
-                <label htmlFor='price'>Цена</label>
-                <input 
-                    type="number"
-                    id='price'
-                    onChange={(e) => this.setState({ 
-                        price: e.target.value === "" ? null : Number(e.target.value) 
-                    })}
-                />
-
-                <label htmlFor='isAvailable'>В наличии:</label>
-                <input type='checkbox' id='isAvailable' onChange={(e) => this.setState({ isAvailable: e.target.checked })} />
-
-                <button type='button' onClick={() => {
-                    this.myForm.current.reset()
-
-                    this.props.onAdd(
-                        {
-                            name: this.state.name,
-                            description: this.state.description,
-                            price: this.state.price,
-                            isAvailable: this.state.isAvailable
-                        }
-                    )
-
-                    this.setState({
-                        name: null,
-                        description: null,
-                        price: null,
-                        isAvailable: false
-                    })
-                }}>
-                    Добавить
-                </button>
-            </form>
-        )
-    }
-}
+    return (
+        <form ref={myForm} className={styles.form}>
+            <input
+                placeholder='Название'
+                onChange={(e) => handleInputChange('name', e.target.value)}
+            />
+            
+            <textarea
+                placeholder='Описание'
+                onChange={(e) => handleInputChange('description', e.target.value)}
+            />
+            
+            <label htmlFor='price'>Цена</label>
+            <input 
+                type="number"
+                id='price'
+                onChange={(e) => handleInputChange('price', Number(e.target.value))}
+            />
+            
+            <label htmlFor='isAvailable'>В наличии:</label>
+            <input 
+                type='checkbox' 
+                id='isAvailable' 
+                checked={formState.isAvailable}
+                onChange={(e) => setFormState(prev => ({
+                    ...prev,
+                    isAvailable: e.target.checked
+                }))}
+            />
+            
+            <button 
+                type='button' 
+                onClick={handleSubmit}
+            >
+                Добавить
+            </button>
+        </form>
+    );
+};
 
 export default AddItem;
