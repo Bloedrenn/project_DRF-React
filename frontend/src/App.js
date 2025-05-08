@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { fetchItems, createItem, updateItem, deleteItem } from './api/itemsApi';
@@ -6,16 +6,11 @@ import { fetchItems, createItem, updateItem, deleteItem } from './api/itemsApi';
 import HomePage from './pages/HomePage';
 import ItemDetailPage from './pages/ItemDetailPage';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
+function App() {
+    const [items, setItems] = useState([]);
 
-        this.state = {
-            items: []
-        };
-    }
-
-    componentDidMount() {
+    // Загрузка товаров при монтировании компонента
+    useEffect(() => {
         fetchItems()
             .then(response => {
                 const items = response.data.map(item => {
@@ -27,13 +22,15 @@ class App extends Component {
                         isAvailable: is_available
                     };
                 });
-            
-                this.setState({ items });
-            })
-            .catch(error => console.error(error));
-    }
 
-    addItem = (item) => {
+                setItems(items);
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки товаров:', error);
+            });
+    }, []); // Пустой массив зависимостей — эффект выполняется один раз при монтировании
+
+    const addItem = (item) => {
         // Конвертируем camelCase -> snake_case для бэкенда
         const backendItem = {
             name: item.name,
@@ -52,9 +49,7 @@ class App extends Component {
                     isAvailable: is_available
                 };
 
-                this.setState(prevState => ({
-                    items: [...prevState.items, newItem]
-                }));
+                setItems(prevItems => [...prevItems, newItem]);
             })
             .catch(error => {
                 console.error('Ошибка добавления:', error);
@@ -62,7 +57,7 @@ class App extends Component {
             });
     };
 
-    editItem = (item) => {
+    const editItem = (item) => {
         // Конвертируем camelCase -> snake_case для бэкенда
         const backendItem = {
             name: item.name,
@@ -75,52 +70,47 @@ class App extends Component {
             .then(response => {
                 // Обновляем состояние только после успешного ответа от сервера
                 const { is_available, ...restData } = response.data;
-                this.setState(prevState => ({
-                    items: prevState.items.map(prevItem => 
-                        prevItem.id === item.id 
-                            ? { ...restData, isAvailable: is_available } 
-                            : prevItem
+                setItems(prevItems =>
+                    prevItems.map(prevItem =>
+                        prevItem.id === item.id ? { ...restData, isAvailable: is_available } : prevItem
                     )
-                }));
+                );
             })
             .catch(error => {
                 console.error('Ошибка обновления:', error);
                 alert('Не удалось обновить товар');
-                // Можно добавить откат состояния
             });
     };
 
-    deleteItem = (id) => {
+    const removeItem = (id) => {
         if (window.confirm('Вы уверены, что хотите удалить этот товар?')) {
             // Отправляем DELETE-запрос на бэкенд
             deleteItem(id)
                 .then(() => {
                     // Успешное удаление на бэкенде -> обновляем фронт
-                    this.setState({
-                        items: this.state.items.filter((item) => item.id !== id)
-                    });
+                    setItems(prevItems => prevItems.filter(item => item.id !== id));
                 })
-                .catch(error => console.error('Ошибка удаления:', error));
+                .catch(error => {
+                    console.error('Ошибка удаления:', error);
+                });
         }
-    }
+    };
 
-    render() {
-        return (
-            <Router>
-                <Routes>
-                    <Route path="/" element={
-                        <HomePage 
-                            items={this.state.items} 
-                            onAdd={this.addItem}
-                            onEdit={this.editItem}
-                            onDelete={this.deleteItem}
-                        />
-                    }/>
-                    <Route path="/items/:id" element={<ItemDetailPage />} />
-                </Routes>
-            </Router>
-        );
-    }
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={
+                    <HomePage
+                        items={items}
+                        onAdd={addItem}
+                        onEdit={editItem}
+                        onDelete={removeItem}
+                    />
+                } />
+                <Route path="/items/:id" element={<ItemDetailPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
