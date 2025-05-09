@@ -2,7 +2,7 @@ const initialState = {
     cash: 0
 };
 
-export const bankReducer = (state = initialState, action) => {
+export const cashReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_CASH":
             // return {...state, cash: state.cash + action.payload}
