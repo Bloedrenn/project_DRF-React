@@ -1,6 +1,10 @@
 import { configureStore} from '@reduxjs/toolkit';
-import { cashReducer } from './reducers/cashReducer';
+import { bankReducer } from './reducers/bankReducer';
+import { customersReducer } from './reducers/customersReducer';
 
 export const store = configureStore({
-    reducer: cashReducer
+    reducer: {
+        bank: bankReducer,
+        customers: customersReducer
+    }
 });

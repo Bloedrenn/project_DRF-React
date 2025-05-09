@@ -13,7 +13,7 @@ const ItemCard = (props) => {
     const [editForm, setEditForm] = useState(false);
 
     const dispatch = useDispatch();
-    const cash = useSelector(state => state.cash);
+    const cash = useSelector(state => state.bank.cash);
 
     const addCash = (amount) => {
         dispatch({ type: "ADD_CASH", payload: amount });
