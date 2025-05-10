@@ -7,6 +7,8 @@ import { FaEdit } from "react-icons/fa";
 
 import { addCustomerAction, removeCustomerAction } from '../../../store/reducers/customersReducer';
 
+import { fetchCustomers } from '../../../asyncActions/customers';
+
 import EditItem from "../Forms/EditItem";
 
 import styles from './ItemCard.module.css';
@@ -59,6 +61,7 @@ const ItemCard = (props) => {
             <div>{cash}</div>
 
             <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
+            <button onClick={() => dispatch(fetchCustomers())}>Получить клиентов из базы</button>
             {
                 customers.length > 0 ?
                 <div>
